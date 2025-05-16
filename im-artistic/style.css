@@ -1,0 +1,51 @@
+h1 {
+    background-color: blue;
+    color: white;
+    padding: 4px;
+    border: 4px ridge #808080;
+    text-align: left;
+    margin: 0;
+    width: 100%;
+}
+
+html {
+    background-color: #00665e;
+}
+
+body {
+    text-align: right;
+    font-family: monospace;
+    background-color: #c0c0c0;
+    margin: 20px 20% 0 20%;
+    border: 4px ridge #808080;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+canvas {
+    margin: 20px;
+    border: 4px ridge #808080;
+    border-radius: 4px;
+    cursor: crosshair;
+}
+
+.mid-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button {
+    border: 2px ridge #808080;
+    background-color: #c0c0c0;
+}
+
+.color, .tool {
+    height: 40px;
+    width: 40px;
+}
+
+.top, .bottom {
+    padding: 8px;
+}

@@ -1,0 +1,42 @@
+body {
+    background-color: #24273a;
+    color: #c6d0f5;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+canvas {
+    image-rendering: pixelated;
+    margin: 20px;
+}
+
+#canvas {
+    border: 2px solid #c6d0f5;
+}
+
+#info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.2rem;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tagline, .start {
+    font-size: 1.2rem;
+}
+
+.start {
+    padding: 20px;
+    border: 2px solid #c6d0f5;
+}

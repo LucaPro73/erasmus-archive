@@ -1,0 +1,21 @@
+body {
+    font-family: monospace;
+    text-align: center;
+    color: #242;
+    background-color: #2a2;
+}
+
+canvas {
+    background-color: #2a2;
+    display: block;
+    margin: 40px auto;
+    border: 2px solid #242;
+}
+
+.restart {
+    background-color: #2a2;
+    color: #242;
+    border: 2px solid #242;
+    font: 20px monospace;
+    margin: auto;
+}

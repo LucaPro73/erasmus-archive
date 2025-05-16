@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+    font-family: cursive;
+    background-color: skyblue;
+    color: #f0f0f0;
+    background-size: cover;
+    background-image: url("./assets/touchgrass.png");
+}
+
+canvas {
+    background-color: #f0f0f0;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-top: 40px;
+}

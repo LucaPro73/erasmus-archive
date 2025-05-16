@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>Untitled - Paint</h1>
+
+    <div class="top">
+        <button id="brush" class="tool">🖌️</button>
+        <button id="eraser" class="tool">
+            <img src="./images/high-quality-pink-eraser.webp" style="height: 1rem; width: 1rem;">
+        </button>
+        <button id="clear" class="tool">❌</button>
+        <input type="range" id="size" min="2" max="20" value="5">
+    </div>
+
+    <canvas id="canvas" width="400px" height="400px" style="align-self: flex-end;"></canvas>
+
+    <div class="bottom">
+        <button class="color" id="red" style="background-color: red;"></button>
+        <button class="color" id="orange" style="background-color: orange;"></button>
+        <button class="color" id="yellow" style="background-color: yellow;"></button>
+        <button class="color" id="green" style="background-color: green;"></button>
+        <button class="color" id="blue" style="background-color: blue;"></button>
+        <button class="color" id="purple" style="background-color: purple;"></button>
+        <button class="color" id="pink" style="background-color: pink;"></button>
+        <button class="color" id="black" style="background-color: black;"></button>
+        <button class="color" id="white" style="background-color: white;"></button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
