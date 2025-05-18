@@ -516,7 +516,7 @@ function songUpdate(time = 0) {
         player.y += player.vy * framerateMultiplier
         player.x = Math.max(0, Math.min(width - player.width, player.x))
         player.y = Math.max(0, Math.min(height - player.height, player.y))
-        bgScrollSpeed = Math.max(bgScrollSpeed * 0.935, 0.5)
+        bgScrollSpeed = Math.max(bgScrollSpeed * Math.pow(0.935, framerateMultiplier),  0.5)
     }
 
     let playerColor = `hsl(${player.hp * 20}, 100%, ${Math.max(player.dashSpeed * 10, 50)}%)`
