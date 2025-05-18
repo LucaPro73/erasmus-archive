@@ -150,7 +150,8 @@ function clickedCircle(x, y, radius) {
 let bgScrollSpeed = 0.5
 let bgScrollOffset = 0
 const trigFnValues = {}
-function drawBackground(angle, speed) {
+function drawBackground(angle, speed, deltaTime) {
+    const framerateMultiplier = (60 / 1000) * deltaTime
     bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height)
     bgCtx.fillStyle = "black"
     bgCtx.fillRect(0, 0, width, height)
@@ -162,7 +163,7 @@ function drawBackground(angle, speed) {
         sin: Math.sin(radBgAngle)
     }
     const { sin, cos } = trigFnValues[radBgAngle]
-    bgScrollOffset = (bgScrollOffset + speed) % 300
+    bgScrollOffset = (bgScrollOffset + speed * framerateMultiplier) % 300
     bgCtx.save()
     for (let y = -height / 2; y < height * 1.5; y += 40) {
         const yOffset = y + 20 + (bgScrollOffset * sin)
@@ -359,6 +360,7 @@ let dbgShowHitboxes = false
 function songUpdate(time = 0) {
     const deltaTime = time - lastTime
     lastTime = time
+    const framerateMultiplier = (60 / 1000) * deltaTime
 
     if (!startTime) {
         obstacleState = structuredClone(selectedLevel.stage)
@@ -382,7 +384,7 @@ function songUpdate(time = 0) {
         selectedLevel.audio.gainNode.gain.value = Math.max(beat / easeDuration, 0)
 
     ctx.clearRect(0, 0, width, height)
-    drawBackground(-20, bgScrollSpeed)
+    drawBackground(-20, bgScrollSpeed, deltaTime)
 
     let tutorialOpacity = Math.min(Math.max((startTime - time + 8000) / 1500, 0), 1)
     ctx.fillStyle = `rgba(64, 64, 64, ${tutorialOpacity})`
@@ -409,11 +411,11 @@ function songUpdate(time = 0) {
                     const vx = Math.cos(obstacle.angle) * obstacle.moveSpeed * ease
                     const vy = Math.sin(obstacle.angle) * obstacle.moveSpeed * ease
                     if (obstacle.moveSideways) {
-                        o[1].x += vy
-                        o[1].y += vx
+                        o[1].x += vy * framerateMultiplier
+                        o[1].y += vx * framerateMultiplier
                     } else {
-                        o[1].x += vx
-                        o[1].y += vy
+                        o[1].x += vx * framerateMultiplier
+                        o[1].y += vy * framerateMultiplier
                     }
                 }
             }
@@ -475,8 +477,8 @@ function songUpdate(time = 0) {
             player.vy = Math.sin(angle) * playerSpeed
             if (Math.abs(angle - player.angle).toFixed(3) !== "3.141") player.angle = angle
         } else if (!player.isDashing) {
-            player.vx *= 0.75
-            player.vy *= 0.75
+            player.vx *= Math.pow(0.75, framerateMultiplier)
+            player.vy *= Math.pow(0.75, framerateMultiplier)
         }
 
         if (mouse2click) {
@@ -506,12 +508,12 @@ function songUpdate(time = 0) {
             player.isDashing = false
             player.vx = Math.cos(player.angle) * player.dashSpeed
             player.vy = Math.sin(player.angle) * player.dashSpeed
-            if (distance < 25) player.dashSpeed *= 0.6
-            else player.dashSpeed *= 0.9
+            if (distance < 25) player.dashSpeed *= Math.pow(0.6, framerateMultiplier)
+            else player.dashSpeed *= Math.pow(0.9, framerateMultiplier)
         }
 
-        player.x += player.vx
-        player.y += player.vy
+        player.x += player.vx * framerateMultiplier
+        player.y += player.vy * framerateMultiplier
         player.x = Math.max(0, Math.min(width - player.width, player.x))
         player.y = Math.max(0, Math.min(height - player.height, player.y))
         bgScrollSpeed = Math.max(bgScrollSpeed * 0.935, 0.5)
@@ -645,7 +647,7 @@ function mainMenuUpdate(time = 0) {
     lastTime = time
 
     ctx.clearRect(0, 0, width, height)
-    drawBackground(-160, 0.5)
+    drawBackground(-160, 0.5, deltaTime)
 
     fillAngledImage(logo, width / 2 - 150, 100, 300, 150, Math.sin(time / 1000 * 1.5) * 10, false)
 
@@ -733,7 +735,7 @@ function levelSelectUpdate(time) {
     lastTime = time
 
     ctx.clearRect(0, 0, width, height)
-    drawBackground(160, 0.75)
+    drawBackground(160, 0.75, deltaTime)
 
     ctx.fillStyle = "#181818"
     ctx.beginPath()
@@ -819,7 +821,7 @@ function trophyHallUpdate(time = 0) {
     lastTime = time
 
     ctx.clearRect(0, 0, width, height)
-    drawBackground(-160, 0.5)
+    drawBackground(-160, 0.5, deltaTime)
 
     ctx.fillStyle = "#181818"
     ctx.beginPath()
